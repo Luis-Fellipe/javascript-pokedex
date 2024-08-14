@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+* {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    background-color: #f6f8fc;
+}
+
+.content {
+    width: 100vw;
+    height: 100vh;
+    padding: 1rem;
+    background-color: white;
+}
+
+.content h1 {
+    margin: 0;
+}
+
+ /* Modal */
+
+.modal-background {
+    background-color: rgba(0, 0, 0, 0.55);
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: backdrop-filter 0.3s ease;
+}
+
+.modal-background.visivel {
+    display: flex;
+    backdrop-filter: blur(10px);
+}
+
+.modal {
+    width: 80%;
+    height: 72%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 20px;
+    color: white;
+    font-size: 2rem;
+    position: fixed;
+    max-width: 350px;
+    max-height: 558px;
+}
+
+.modal-content {
+    padding: 1rem 1rem 0;
+}
+
+.acoes-perfil {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+}
+
+.curtir {
+    color: red;
+}
+
+.voltar {
+    background-image: url('../img/seta-cortada.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    transition: background-image 0.3s ease-in-out;
+}
+
+.favoritar {
+    background-image: url('../img/favoritar-icone-origin.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: background-image 0.3s ease-in-out;
+}
+
+.favoritar.favoritado {
+    background-image: url('../img/favoritar-icone-edit.png');
+}
+
+.numero-perfil {
+    text-align: right;
+    font-size: 1rem;
+}
+
+.tipos-perfil {
+    display: flex;
+}
+
+.tipo-perfil {
+    font-size: 1rem;
+    background-color: #46D1B1;
+    filter: brightness(1.1);
+    padding: .25rem 0.5rem;
+    margin: 0 0.25rem;
+    border-radius: 30px;
+}
+
+.imagem-pokemon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: -10px;
+}
+
+.imagem-pokemon img {
+    width: 152px;
+    transition: transform 0.5s;
+}
+
+.imagem-pokemon img:hover {
+    transform: scale(1.09);
+}
+
+.detalhes-perfil {
+    background-color: white;
+    height: 52%;
+    border-radius: 20px;
+    color: black;
+    padding: 1rem;
+}
+
+.menu-modal {
+    display: flex;
+    justify-content: center;
+}
+
+.menu-modal h3 {
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.atributos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 1.5fr;
+    font-size: 0.9rem;
+    margin-top: 0.8rem;
+}
+
+.valor-atributo {
+    text-align: center;
+}
+
+.atributos meter {
+    width: 100%;
+}
+
+/* customizar barra do meter */
+
+meter::-webkit-meter-optimum-value {
+    background: #46D1B1;
+}
+
+meter::-webkit-meter-bar {
+    background: #e0e0e0;
+}
+
+meter::-moz-meter-bar {
+    background: #76c7c0;
+}
+
+@media screen and (max-width: 222px) {
+    .modal {
+        width: auto;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .content {
+        max-width: 992px;
+        margin: 1rem auto;
+        height: auto;
+        border-radius: 1rem;
+    }
+}
+
+@media (pointer: coarse) {
+    .content .pokemons .pokemon:hover {
+        transform: none;
+        outline: none;
+    }
+
+    .imagem-pokemon img:hover {
+        transform: none;
+    }
+
+    .pular {
+        animation: pular 0.5s;
+    }
+}
+
+/* animação */
+
+@keyframes pular {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px); /* Altura do pulo */
+    }
+}

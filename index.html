@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/pokedex.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <section class="content">
+        <h1>Pokedex</h1>
+        <ol id="pokemon-list" class="pokemons"></ol>
+
+        <div class="botao">
+            <button id="carregarMais" type="button">Ver mais...</button>
+        </div>
+    </section>
+
+    <div class="modal-background" id="modal-total">
+        <div class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="acoes-perfil">
+                        <button class="voltar" onclick="fecharModal()" id="fechar"></button>
+                        <button class="favoritar" id="botao-favoritar"></button>
+                    </div>
+                    <div class="nome-perfil">Bulbasaur</div>
+                    <div class="numero-perfil">#001</div>
+                    <div class="tipos-perfil">
+                        <div class="tipo-perfil">Grass</div>
+                        <div class="tipo-perfil poison">Poison</div>
+                    </div>
+                </div>
+                <div class="imagem-pokemon">
+                    <img id="pular" src="./assets/img/Bulbasaur-PNG.png" alt="">
+                </div>
+            </div>
+            <div class="detalhes-perfil">
+                <nav class="menu-modal">
+                    <h3>Estatísticas</h3>
+                </nav>
+                <div class="atributos-container">
+                    <div class="atributos">
+                        <span class="nome-atributo">Hp</span>
+                        <span class="valor-atributo">75</span>
+                        <meter max="160" min="0" value="75"></meter>
+                    </div>
+                    <div class="atributos">
+                        <span class="nome-atributo">Attack</span>
+                        <span class="valor-atributo">53</span>
+                        <meter max="160" min="0" value="53"></meter>
+                    </div>
+                    <div class="atributos">
+                        <span class="nome-atributo">Defense</span>
+                        <span class="valor-atributo">15</span>
+                        <meter max="160" min="0" value="50"></meter>
+                    </div>
+                    <div class="atributos">
+                        <span class="nome-atributo">Sp Attack</span>
+                        <span class="valor-atributo">75</span>
+                        <meter max="160" min="0" value="50"></meter>
+                    </div>
+                    <div class="atributos">
+                        <span class="nome-atributo">Sp Defense</span>
+                        <span class="valor-atributo">75</span>
+                        <meter max="160" min="0" value="50"></meter>
+                    </div>
+                    <div class="atributos">
+                        <span class="nome-atributo">Speed</span>
+                        <span class="valor-atributo">75</span>
+                        <meter max="160" min="0" value="50"></meter>
+                    </div>
+                    <div class="atributos">
+                        <span class="nome-atributo">Total</span>
+                        <span class="valor-atributo">75</span>
+                        <meter max="160" min="0" value="50"></meter>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/scripts/pokemon-model.js"></script>
+    <script src="./assets/scripts/main.js"></script>
+</body>
+</html>
