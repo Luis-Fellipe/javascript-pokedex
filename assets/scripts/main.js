@@ -1,5 +1,6 @@
 const pokeApi = {};
 
+// Função para converter os detalhes do Pokémon para o objeto Pokémon
 function convertPokeApiDetailToPokemon(pokeDetail) {
     const pokemon = new Pokemon();
     pokemon.number = pokeDetail.id;
@@ -45,6 +46,37 @@ const botaoCarregarMais = document.getElementById('carregarMais');
 const limit = 5;
 let offset = 0;
 
+// Função para verificar se o Pokémon está favoritado
+function isFavorito(pokemonNumber) {
+    const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+    return favoritos.includes(pokemonNumber);
+}
+
+// Função para salvar o Pokémon como favorito
+function salvarFavorito(pokemonNumber) {
+    const favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+    if (!favoritos.includes(pokemonNumber)) {
+        favoritos.push(pokemonNumber);
+        localStorage.setItem('favoritos', JSON.stringify(favoritos));
+    }
+}
+
+// Função para remover o Pokémon dos favoritos
+function removerFavorito(pokemonNumber) {
+    let favoritos = JSON.parse(localStorage.getItem('favoritos')) || [];
+    favoritos = favoritos.filter(number => number !== pokemonNumber);
+    localStorage.setItem('favoritos', JSON.stringify(favoritos));
+}
+
+// Função para atualizar o estado do botão de favoritar
+function updateFavoritoState(pokemonNumber, likeButton) {
+    if (isFavorito(pokemonNumber)) {
+        likeButton.classList.add('favoritado');
+    } else {
+        likeButton.classList.remove('favoritado');
+    }
+}
+
 function carregarPokemons(offset, limit) {
     pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
         pokemonOl.innerHTML += pokemons.map((pokemon) => `
@@ -73,13 +105,12 @@ function handlePokemonClick(pokemon) {
 const modal = document.getElementById('modal-total');
 
 function fecharModal() {
-    const modal = document.getElementById('modal-total');
     const modalDiv = modal.querySelector('.modal');
     const likeButton = modal.querySelector('#botao-favoritar');
 
-    // Remove a classe do tipo do Pokémon da div.modal
-    const types = ['grass', 'poison', 'fire', 'water', 'electric', 'bug', 'normal']; // Adicione todos os tipos que você usa
-    types.forEach(type => modalDiv.classList.remove(type));
+    // Remove todas as classes de tipo da div.modal
+    const tipos = ['grass', 'poison', 'fire', 'water', 'ice', 'dark', 'rock', 'ground', 'steel', 'fairy', 'dragon', 'ghost', 'fighting', 'flying', 'electric', 'psychic', 'bug', 'normal']; // Adicione todos os tipos que você usa
+    tipos.forEach(type => modalDiv.classList.remove(type));
 
     // Reseta o estado do botão de favoritar
     likeButton.classList.remove('favoritado');
@@ -88,16 +119,17 @@ function fecharModal() {
 }
 
 function abrirModal(pokemon) {
-    const modal = document.getElementById('modal-total');
     const modalDiv = modal.querySelector('.modal');
     const likeButton = modal.querySelector('#botao-favoritar');
 
-    // Remove a classe do tipo do Pokémon da div.modal
-    const types = ['grass', 'poison', 'fire', 'water', 'electric', 'bug', 'normal']; // Adicione todos os tipos que você usa
-    types.forEach(type => modalDiv.classList.remove(type));
+    // Remove todas as classes de tipo da div.modal
+    const tipos = ['grass', 'poison', 'fire', 'water', 'electric', 'bug', 'normal']; // Adicione todos os tipos que você usa
+    tipos.forEach(type => modalDiv.classList.remove(type));
     
-    // Adiciona a classe do tipo do Pokémon à div.modal
-    modalDiv.classList.add(pokemon.type);
+    // Adiciona apenas o primeiro tipo do Pokémon à div.modal
+    if (pokemon.types.length > 0) {
+        modalDiv.classList.add(pokemon.types[0]);
+    }
 
     // Atualize o conteúdo do modal com as informações do Pokémon
     modal.querySelector('.nome-perfil').textContent = pokemon.name;
@@ -139,12 +171,30 @@ function abrirModal(pokemon) {
         }
     });
 
-    // Define o estado inicial do botão de favoritar
-    likeButton.classList.remove('favoritado');
+    // Atualiza os tipos no modal
+    const tiposPerfil = modal.querySelector('.tipos-perfil');
+    tiposPerfil.innerHTML = pokemon.types.map(type => `
+        <div class="tipo-perfil ${type}">
+            ${type}
+        </div>
+    `).join('');
+
+    // Atualiza o estado do botão de favoritar
+    updateFavoritoState(pokemon.number, likeButton);
+
+    // Configura o clique do botão de favoritar
+    likeButton.onclick = () => {
+        if (likeButton.classList.contains('favoritado')) {
+            likeButton.classList.remove('favoritado');
+            removerFavorito(pokemon.number);
+        } else {
+            likeButton.classList.add('favoritado');
+            salvarFavorito(pokemon.number);
+        }
+    };
 
     modal.classList.add('visivel');
 }
-
 
 
 // Fechar modal clicando fora do card
@@ -161,7 +211,7 @@ document.addEventListener('keydown', function (event) {
     }
 });
 
-// Animação de pulo 
+// Animação de pulo
 const imagem = document.getElementById('pular');
 
 imagem.addEventListener('click', () => {
@@ -174,16 +224,10 @@ imagem.addEventListener('click', () => {
 });
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    const likeButton = document.getElementById('botao-favoritar');
-
-    likeButton.addEventListener('click', () => {
-        likeButton.classList.toggle('favoritado');
-    });
-});
-
-carregarPokemons(offset, limit);
-
-botaoCarregarMais.addEventListener('click', () => {
-    offset += limit;
     carregarPokemons(offset, limit);
+
+    botaoCarregarMais.addEventListener('click', () => {
+        offset += limit;
+        carregarPokemons(offset, limit);
+    });
 });
