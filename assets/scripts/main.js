@@ -43,7 +43,7 @@ pokeApi.getPokemons = (offset = 0, limit = 10) => {
 
 const pokemonOl = document.getElementById('pokemon-list');
 const botaoCarregarMais = document.getElementById('carregarMais');
-const limit = 5;
+const limit = 10;
 let offset = 0;
 
 // Função para verificar se o Pokémon está favoritado
