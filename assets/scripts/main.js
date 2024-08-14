@@ -75,22 +75,34 @@ const modal = document.getElementById('modal-total');
 function fecharModal() {
     const modal = document.getElementById('modal-total');
     const modalDiv = modal.querySelector('.modal');
-    
+    const likeButton = modal.querySelector('#botao-favoritar');
+
     // Remove a classe do tipo do Pokémon da div.modal
     const types = ['grass', 'poison', 'fire', 'water', 'electric', 'bug', 'normal']; // Adicione todos os tipos que você usa
     types.forEach(type => modalDiv.classList.remove(type));
+
+    // Reseta o estado do botão de favoritar
+    likeButton.classList.remove('favoritado');
     
     modal.classList.remove('visivel');
 }
 
 function abrirModal(pokemon) {
     const modal = document.getElementById('modal-total');
-    const modalContent = modal.querySelector('.modal-content');
+    const modalDiv = modal.querySelector('.modal');
+    const likeButton = modal.querySelector('#botao-favoritar');
+
+    // Remove a classe do tipo do Pokémon da div.modal
+    const types = ['grass', 'poison', 'fire', 'water', 'electric', 'bug', 'normal']; // Adicione todos os tipos que você usa
+    types.forEach(type => modalDiv.classList.remove(type));
+    
+    // Adiciona a classe do tipo do Pokémon à div.modal
+    modalDiv.classList.add(pokemon.type);
 
     // Atualize o conteúdo do modal com as informações do Pokémon
-    modalContent.querySelector('.nome-perfil').textContent = pokemon.name;
-    modalContent.querySelector('.numero-perfil').textContent = `#${pokemon.number}`;
-    modalContent.querySelector('.imagem-pokemon img').src = pokemon.photo;
+    modal.querySelector('.nome-perfil').textContent = pokemon.name;
+    modal.querySelector('.numero-perfil').textContent = `#${pokemon.number}`;
+    modal.querySelector('.imagem-pokemon img').src = pokemon.photo;
 
     const atributos = modal.querySelectorAll('.atributos');
     atributos.forEach((atributo, index) => {
@@ -127,12 +139,12 @@ function abrirModal(pokemon) {
         }
     });
 
-    // Adicionar a classe do tipo do Pokémon à div.modal
-    const modalDiv = modal.querySelector('.modal');
-    modalDiv.classList.add(pokemon.type);
+    // Define o estado inicial do botão de favoritar
+    likeButton.classList.remove('favoritado');
 
     modal.classList.add('visivel');
 }
+
 
 
 // Fechar modal clicando fora do card
