@@ -12,7 +12,6 @@ function convertPokeApiDetailToPokemon(pokeDetail) {
     pokemon.type = type;
     pokemon.photo = pokeDetail.sprites.other.dream_world.front_default;
 
-    // Dummy values for the attributes - replace with actual values from your data source
     pokemon.hp = pokeDetail.stats.find(stat => stat.stat.name === 'hp').base_stat;
     pokemon.attack = pokeDetail.stats.find(stat => stat.stat.name === 'attack').base_stat;
     pokemon.defense = pokeDetail.stats.find(stat => stat.stat.name === 'defense').base_stat;
