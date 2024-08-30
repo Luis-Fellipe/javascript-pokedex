@@ -109,7 +109,7 @@ function fecharModal() {
     const likeButton = modal.querySelector('#botao-favoritar');
 
     // Remove todas as classes de tipo da div.modal
-    const tipos = ['grass', 'poison', 'fire', 'water', 'ice', 'dark', 'rock', 'ground', 'steel', 'fairy', 'dragon', 'ghost', 'fighting', 'flying', 'electric', 'psychic', 'bug', 'normal']; // Adicione todos os tipos que você usa
+    const tipos = ['grass', 'poison', 'fire', 'water', 'ice', 'dark', 'rock', 'ground', 'steel', 'fairy', 'dragon', 'ghost', 'fighting', 'flying', 'electric', 'psychic', 'bug', 'normal'];
     tipos.forEach(type => modalDiv.classList.remove(type));
 
     // Reseta o estado do botão de favoritar
@@ -122,8 +122,7 @@ function abrirModal(pokemon) {
     const modalDiv = modal.querySelector('.modal');
     const likeButton = modal.querySelector('#botao-favoritar');
 
-    // Remove todas as classes de tipo da div.modal
-    const tipos = ['grass', 'poison', 'fire', 'water', 'electric', 'bug', 'normal']; // Adicione todos os tipos que você usa
+    const tipos = ['grass', 'poison', 'fire', 'water', 'electric', 'bug', 'normal'];
     tipos.forEach(type => modalDiv.classList.remove(type));
     
     // Adiciona apenas o primeiro tipo do Pokémon à div.modal
