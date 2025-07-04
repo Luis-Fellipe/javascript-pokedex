@@ -32,11 +32,10 @@ A aplicação consiste em uma Pokédex moderna, que consome dados da [PokeAPI](h
 > *Imagem ilustrativa da versão desktop da Pokédex.*
 
 ### Versão Mobile
-
 <p align="center">
-  <img src="assets/img/preview-cell.png" alt="Prévia Mobile" width="250px"><br>
-  <em>Imagem ilustrativa da versão mobile da Pokédex.</em>
+  <img src="assets/img/preview-cell.png" alt="Prévia Mobile" width="250px">
 </p>
+> *Imagem ilustrativa da versão mobile da Pokédex.*
 
 ## 🔗 Acesse o Projeto
 
